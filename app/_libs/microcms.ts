@@ -67,7 +67,7 @@ export const getNewsDetail = async (
   return detailData;
 };
 
-export const getCatagoryDetail = async (
+export const getCategoryDetail = async (
   contentId: string,
   queries?: MicroCMSQueries,
 ) => {
