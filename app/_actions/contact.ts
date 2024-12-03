@@ -1,10 +1,12 @@
 "use server";
+
 function validateEmail(email: string) {
   const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return pattern.test(email);
 }
 
 export async function createContactData(_prevState: any, formData: FormData) {
+  // formのname属性ごとにformData.get()で値を取り出すことができる
   const rawFormData = {
     lastname: formData.get("lastname") as string,
     firstname: formData.get("firstname") as string,
@@ -28,29 +30,30 @@ export async function createContactData(_prevState: any, formData: FormData) {
   if (!rawFormData.company) {
     return {
       status: "error",
-      message: "会社名を入力してください"
+      message: "会社名を入力してください",
     };
   }
   if (!rawFormData.email) {
     return {
       status: "error",
-      message: "メールアドレスを入力してください"
+      message: "メールアドレスを入力してください",
     };
   }
   if (!validateEmail(rawFormData.email)) {
     return {
       status: "error",
-      message: "メールアドレスの形式が誤っています"
+      message: "メールアドレスの形式が誤っています",
     };
   }
   if (!rawFormData.message) {
     return {
       status: "error",
-      message: "メッセージを入力してください"
+      message: "メッセージを入力してください",
     };
   }
+
   const result = await fetch(
-    "https://api.hsforms.com/submissions/v3/integration/submit/${process.env.HUBSPOT_PORTAL_ID}/${process.env.HUBSPOT_FORM_ID}",
+    `https://api.hsforms.com/submissions/v3/integration/submit/${process.env.HUBSPOT_PORTAL_ID}/${process.env.HUBSPOT_FORM_ID}`,
     {
       method: "POST",
       headers: {
@@ -64,7 +67,7 @@ export async function createContactData(_prevState: any, formData: FormData) {
             value: rawFormData.lastname,
           },
           {
-            objectTypeID: "0-1",
+            objectTypeId: "0-1",
             name: "firstname",
             value: rawFormData.firstname,
           },
@@ -85,7 +88,7 @@ export async function createContactData(_prevState: any, formData: FormData) {
           },
         ],
       }),
-    },
+    }
   );
 
   try {
@@ -98,5 +101,5 @@ export async function createContactData(_prevState: any, formData: FormData) {
     };
   }
 
-  return { status: "success", message: "OK"};
+  return { status: "success", message: "OK" };
 }
