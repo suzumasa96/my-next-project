@@ -9,7 +9,7 @@ const initialState = {
   message: "",
 };
 
-export default function contactForm() {
+export default function ContactForm() {
   const [state, formAction] = useFormState(createContactData, initialState);
   console.log(state);
   if (state.status == "success") {
@@ -44,7 +44,7 @@ export default function contactForm() {
         <input className={styles.textfield} type="text" id="company" name="company" />
       </div>
       <div className={styles.item}>
-        <label className={styles.label} htmlFor="email" id="email" name="email">
+        <label className={styles.label} htmlFor="email">
           メールアドレス
         </label>
         <input className={styles.textfield} type="text" id="email" name="email" />
