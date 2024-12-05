@@ -16,7 +16,7 @@ export default function ContactForm() {
     return (
       <p className={styles.success}>
         お問い合わせいただき、ありがとうございます。
-        <br/>
+        <br />
         お返事まで今しばらくお待ちください。
       </p>
     );
@@ -28,32 +28,56 @@ export default function ContactForm() {
           <label className={styles.label} htmlFor="lastname">
             姓
           </label>
-          <input className={styles.textfield} type="text" id="lastname" name="lastname" />
+          <input
+            className={styles.textfield}
+            type="text"
+            id="lastname"
+            name="lastname"
+          />
         </div>
         <div className={styles.item}>
           <label className={styles.label} htmlFor="firstname">
             名
           </label>
-          <input className={styles.textfield} type="text" id="firstname" name="firstname" />
+          <input
+            className={styles.textfield}
+            type="text"
+            id="firstname"
+            name="firstname"
+          />
         </div>
       </div>
       <div className={styles.item}>
         <label className={styles.label} htmlFor="company">
           会社名
         </label>
-        <input className={styles.textfield} type="text" id="company" name="company" />
+        <input
+          className={styles.textfield}
+          type="text"
+          id="company"
+          name="company"
+        />
       </div>
       <div className={styles.item}>
         <label className={styles.label} htmlFor="email">
           メールアドレス
         </label>
-        <input className={styles.textfield} type="text" id="email" name="email" />
+        <input
+          className={styles.textfield}
+          type="text"
+          id="email"
+          name="email"
+        />
       </div>
       <div className={styles.item}>
         <label className={styles.label} htmlFor="message">
           メッセージ
         </label>
-        <textarea className={styles.textarea} name="message" id="message"></textarea>
+        <textarea
+          className={styles.textarea}
+          name="message"
+          id="message"
+        ></textarea>
       </div>
       <div className={styles.actions}>
         {state.status == "error" && (

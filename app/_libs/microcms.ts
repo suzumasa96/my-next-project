@@ -13,8 +13,8 @@ export type Member = {
 } & MicroCMSListContent;
 
 export type Category = {
-    name: string;
-  } & MicroCMSListContent;
+  name: string;
+} & MicroCMSListContent;
 
 export type News = {
   title: string;
@@ -38,20 +38,18 @@ const client = createClient({
 });
 
 export const getMemberList = async (queries?: MicroCMSQueries) => {
-  const listData = await client
-    .getList<Member>({
-      endpoint: "members",
-      queries,
-    });
+  const listData = await client.getList<Member>({
+    endpoint: "members",
+    queries,
+  });
   return listData;
 };
 
 export const getNewsList = async (queries?: MicroCMSQueries) => {
-  const listData = await client
-    .getList<News>({
-      endpoint: "news",
-      queries,
-    });
+  const listData = await client.getList<News>({
+    endpoint: "news",
+    queries,
+  });
   return listData;
 };
 
@@ -74,7 +72,7 @@ export const getNewsDetail = async (
 
 export const getCategoryDetail = async (
   contentId: string,
-  queries?: MicroCMSQueries,
+  queries?: MicroCMSQueries
 ) => {
   const detailData = await client.getListDetail<Category>({
     endpoint: "categories",
@@ -82,4 +80,18 @@ export const getCategoryDetail = async (
     queries,
   });
   return detailData;
+};
+
+export const getAllNewsList = async () => {
+  const listData = await client.getAllContents<News>({
+    endpoint: "news",
+  });
+  return listData;
+};
+
+export const getAllCategoryList = async () => {
+  const listData = await client.getAllContents<Category>({
+    endpoint: "categories",
+  });
+  return listData;
 };
